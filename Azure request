@@ -1,0 +1,21 @@
+import requests
+
+# Replace with your actual values
+training_key = "BCkpolqmb6tsOJEJLTodww5fTzCwbtQD2cNrR2KG73Fjspda47P4JQQJ99BBACYeBjFXJ3w3AAAJACOGirQy"
+endpoint = "https://firesmokedataset2025.cognitiveservices.azure.com//"
+project_id = "6e3ca4ee-f6b0-4923-8693-99576e4ff40a"
+
+url = f"{endpoint}/customvision/v3.3/Training/projects/{project_id}"
+headers = {
+    "Training-Key": training_key,
+    "Content-Type": "application/json"
+}
+
+response = requests.get(url, headers=headers)
+project_details = response.json()
+
+import json
+with open("custom_vision_project.json", "w") as file:
+    json.dump(project_details, file, indent=4)
+
+print("Project details exported successfully!")
